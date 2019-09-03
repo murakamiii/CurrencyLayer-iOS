@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,11 @@
 		299AD8F2231EE76300CC6932 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 299AD8F0231EE76300CC6932 /* LaunchScreen.storyboard */; };
 		299AD8FD231EE76300CC6932 /* CurrencyLayeriOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AD8FC231EE76300CC6932 /* CurrencyLayeriOSTests.swift */; };
 		299AD908231EE76300CC6932 /* CurrencyLayeriOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AD907231EE76300CC6932 /* CurrencyLayeriOSUITests.swift */; };
+		299AD917231EE90A00CC6932 /* CurrencyLayerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AD916231EE90A00CC6932 /* CurrencyLayerAPI.swift */; };
+		299AD920231F05B200CC6932 /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299AD91C231F05B200CC6932 /* Reachability.framework */; };
+		299AD921231F05B200CC6932 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299AD91D231F05B200CC6932 /* RxSwift.framework */; };
+		299AD922231F05B200CC6932 /* RxRelay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299AD91E231F05B200CC6932 /* RxRelay.framework */; };
+		299AD923231F05B200CC6932 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299AD91F231F05B200CC6932 /* RxCocoa.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +52,13 @@
 		299AD903231EE76300CC6932 /* CurrencyLayeriOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CurrencyLayeriOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		299AD907231EE76300CC6932 /* CurrencyLayeriOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyLayeriOSUITests.swift; sourceTree = "<group>"; };
 		299AD909231EE76300CC6932 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		299AD916231EE90A00CC6932 /* CurrencyLayerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyLayerAPI.swift; sourceTree = "<group>"; };
+		299AD918231F03E900CC6932 /* input.xcfilelist */ = {isa = PBXFileReference; lastKnownFileType = text.xcfilelist; path = input.xcfilelist; sourceTree = "<group>"; };
+		299AD919231F042900CC6932 /* output.xcfilelist */ = {isa = PBXFileReference; lastKnownFileType = text.xcfilelist; path = output.xcfilelist; sourceTree = "<group>"; };
+		299AD91C231F05B200CC6932 /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reachability.framework; path = Carthage/Build/iOS/Reachability.framework; sourceTree = "<group>"; };
+		299AD91D231F05B200CC6932 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
+		299AD91E231F05B200CC6932 /* RxRelay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxRelay.framework; path = Carthage/Build/iOS/RxRelay.framework; sourceTree = "<group>"; };
+		299AD91F231F05B200CC6932 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +66,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				299AD920231F05B200CC6932 /* Reachability.framework in Frameworks */,
+				299AD921231F05B200CC6932 /* RxSwift.framework in Frameworks */,
+				299AD922231F05B200CC6932 /* RxRelay.framework in Frameworks */,
+				299AD923231F05B200CC6932 /* RxCocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,10 +93,13 @@
 		299AD8DB231EE76200CC6932 = {
 			isa = PBXGroup;
 			children = (
+				299AD918231F03E900CC6932 /* input.xcfilelist */,
+				299AD919231F042900CC6932 /* output.xcfilelist */,
 				299AD8E6231EE76200CC6932 /* CurrencyLayeriOS */,
 				299AD8FB231EE76300CC6932 /* CurrencyLayeriOSTests */,
 				299AD906231EE76300CC6932 /* CurrencyLayeriOSUITests */,
 				299AD8E5231EE76200CC6932 /* Products */,
+				299AD91B231F05B200CC6932 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,6 +118,7 @@
 			children = (
 				299AD8E7231EE76200CC6932 /* AppDelegate.swift */,
 				299AD8E9231EE76200CC6932 /* ViewController.swift */,
+				299AD915231EE8D000CC6932 /* Model */,
 				299AD8EB231EE76200CC6932 /* Main.storyboard */,
 				299AD8EE231EE76300CC6932 /* Assets.xcassets */,
 				299AD8F0231EE76300CC6932 /* LaunchScreen.storyboard */,
@@ -125,6 +145,25 @@
 			path = CurrencyLayeriOSUITests;
 			sourceTree = "<group>";
 		};
+		299AD915231EE8D000CC6932 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				299AD916231EE90A00CC6932 /* CurrencyLayerAPI.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		299AD91B231F05B200CC6932 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				299AD91C231F05B200CC6932 /* Reachability.framework */,
+				299AD91F231F05B200CC6932 /* RxCocoa.framework */,
+				299AD91E231F05B200CC6932 /* RxRelay.framework */,
+				299AD91D231F05B200CC6932 /* RxSwift.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,6 +174,7 @@
 				299AD8E0231EE76200CC6932 /* Sources */,
 				299AD8E1231EE76200CC6932 /* Frameworks */,
 				299AD8E2231EE76200CC6932 /* Resources */,
+				299AD91A231F047800CC6932 /* Carthage */,
 			);
 			buildRules = (
 			);
@@ -251,12 +291,36 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		299AD91A231F047800CC6932 /* Carthage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"$(SRCROOT)/input.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = Carthage;
+			outputFileListPaths = (
+				"$(SRCROOT)/output.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		299AD8E0231EE76200CC6932 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				299AD8EA231EE76200CC6932 /* ViewController.swift in Sources */,
+				299AD917231EE90A00CC6932 /* CurrencyLayerAPI.swift in Sources */,
 				299AD8E8231EE76200CC6932 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -434,6 +498,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = AFZF43X7V9;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = CurrencyLayeriOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -452,6 +520,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = AFZF43X7V9;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = CurrencyLayeriOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
