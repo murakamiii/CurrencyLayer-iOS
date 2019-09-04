@@ -14,11 +14,19 @@
 		299AD8F2231EE76300CC6932 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 299AD8F0231EE76300CC6932 /* LaunchScreen.storyboard */; };
 		299AD8FD231EE76300CC6932 /* CurrencyLayeriOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AD8FC231EE76300CC6932 /* CurrencyLayeriOSTests.swift */; };
 		299AD908231EE76300CC6932 /* CurrencyLayeriOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AD907231EE76300CC6932 /* CurrencyLayeriOSUITests.swift */; };
-		299AD917231EE90A00CC6932 /* CurrencyLayerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AD916231EE90A00CC6932 /* CurrencyLayerAPI.swift */; };
+		299AD917231EE90A00CC6932 /* CurrencyListAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AD916231EE90A00CC6932 /* CurrencyListAPI.swift */; };
 		299AD920231F05B200CC6932 /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299AD91C231F05B200CC6932 /* Reachability.framework */; };
 		299AD921231F05B200CC6932 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299AD91D231F05B200CC6932 /* RxSwift.framework */; };
 		299AD922231F05B200CC6932 /* RxRelay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299AD91E231F05B200CC6932 /* RxRelay.framework */; };
 		299AD923231F05B200CC6932 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299AD91F231F05B200CC6932 /* RxCocoa.framework */; };
+		299AD925231F21F200CC6932 /* ListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AD924231F21F200CC6932 /* ListRepository.swift */; };
+		299AD927231F225300CC6932 /* LIveRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AD926231F225300CC6932 /* LIveRepository.swift */; };
+		299AD929231F22A000CC6932 /* CurrencyLiveAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AD928231F22A000CC6932 /* CurrencyLiveAPI.swift */; };
+		299AD92B231F22F500CC6932 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AD92A231F22F500CC6932 /* APIError.swift */; };
+		299AD92F231F42C500CC6932 /* CurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AD92E231F42C500CC6932 /* CurrencyCell.swift */; };
+		299AD931231F42D300CC6932 /* CurrencyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 299AD930231F42D300CC6932 /* CurrencyCell.xib */; };
+		299AD933231F6B2800CC6932 /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AD932231F6B2800CC6932 /* CurrencyService.swift */; };
+		299AD935231F6B4500CC6932 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AD934231F6B4500CC6932 /* MainViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,13 +60,21 @@
 		299AD903231EE76300CC6932 /* CurrencyLayeriOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CurrencyLayeriOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		299AD907231EE76300CC6932 /* CurrencyLayeriOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyLayeriOSUITests.swift; sourceTree = "<group>"; };
 		299AD909231EE76300CC6932 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		299AD916231EE90A00CC6932 /* CurrencyLayerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyLayerAPI.swift; sourceTree = "<group>"; };
+		299AD916231EE90A00CC6932 /* CurrencyListAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyListAPI.swift; sourceTree = "<group>"; };
 		299AD918231F03E900CC6932 /* input.xcfilelist */ = {isa = PBXFileReference; lastKnownFileType = text.xcfilelist; path = input.xcfilelist; sourceTree = "<group>"; };
 		299AD919231F042900CC6932 /* output.xcfilelist */ = {isa = PBXFileReference; lastKnownFileType = text.xcfilelist; path = output.xcfilelist; sourceTree = "<group>"; };
 		299AD91C231F05B200CC6932 /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reachability.framework; path = Carthage/Build/iOS/Reachability.framework; sourceTree = "<group>"; };
 		299AD91D231F05B200CC6932 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		299AD91E231F05B200CC6932 /* RxRelay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxRelay.framework; path = Carthage/Build/iOS/RxRelay.framework; sourceTree = "<group>"; };
 		299AD91F231F05B200CC6932 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
+		299AD924231F21F200CC6932 /* ListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRepository.swift; sourceTree = "<group>"; };
+		299AD926231F225300CC6932 /* LIveRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LIveRepository.swift; sourceTree = "<group>"; };
+		299AD928231F22A000CC6932 /* CurrencyLiveAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyLiveAPI.swift; sourceTree = "<group>"; };
+		299AD92A231F22F500CC6932 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		299AD92E231F42C500CC6932 /* CurrencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCell.swift; sourceTree = "<group>"; };
+		299AD930231F42D300CC6932 /* CurrencyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrencyCell.xib; sourceTree = "<group>"; };
+		299AD932231F6B2800CC6932 /* CurrencyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyService.swift; sourceTree = "<group>"; };
+		299AD934231F6B4500CC6932 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,9 +133,13 @@
 			isa = PBXGroup;
 			children = (
 				299AD8E7231EE76200CC6932 /* AppDelegate.swift */,
-				299AD8E9231EE76200CC6932 /* ViewController.swift */,
-				299AD915231EE8D000CC6932 /* Model */,
 				299AD8EB231EE76200CC6932 /* Main.storyboard */,
+				299AD8E9231EE76200CC6932 /* ViewController.swift */,
+				299AD934231F6B4500CC6932 /* MainViewModel.swift */,
+				299AD932231F6B2800CC6932 /* CurrencyService.swift */,
+				299AD92D231F42A900CC6932 /* CurrencyCell */,
+				299AD92C231F247E00CC6932 /* Repository */,
+				299AD915231EE8D000CC6932 /* API */,
 				299AD8EE231EE76300CC6932 /* Assets.xcassets */,
 				299AD8F0231EE76300CC6932 /* LaunchScreen.storyboard */,
 				299AD8F3231EE76300CC6932 /* Info.plist */,
@@ -145,12 +165,14 @@
 			path = CurrencyLayeriOSUITests;
 			sourceTree = "<group>";
 		};
-		299AD915231EE8D000CC6932 /* Model */ = {
+		299AD915231EE8D000CC6932 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				299AD916231EE90A00CC6932 /* CurrencyLayerAPI.swift */,
+				299AD92A231F22F500CC6932 /* APIError.swift */,
+				299AD916231EE90A00CC6932 /* CurrencyListAPI.swift */,
+				299AD928231F22A000CC6932 /* CurrencyLiveAPI.swift */,
 			);
-			path = Model;
+			path = API;
 			sourceTree = "<group>";
 		};
 		299AD91B231F05B200CC6932 /* Frameworks */ = {
@@ -162,6 +184,24 @@
 				299AD91D231F05B200CC6932 /* RxSwift.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		299AD92C231F247E00CC6932 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				299AD924231F21F200CC6932 /* ListRepository.swift */,
+				299AD926231F225300CC6932 /* LIveRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		299AD92D231F42A900CC6932 /* CurrencyCell */ = {
+			isa = PBXGroup;
+			children = (
+				299AD930231F42D300CC6932 /* CurrencyCell.xib */,
+				299AD92E231F42C500CC6932 /* CurrencyCell.swift */,
+			);
+			path = CurrencyCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,6 +309,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				299AD931231F42D300CC6932 /* CurrencyCell.xib in Resources */,
 				299AD8F2231EE76300CC6932 /* LaunchScreen.storyboard in Resources */,
 				299AD8EF231EE76300CC6932 /* Assets.xcassets in Resources */,
 				299AD8ED231EE76200CC6932 /* Main.storyboard in Resources */,
@@ -319,9 +360,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				299AD92F231F42C500CC6932 /* CurrencyCell.swift in Sources */,
+				299AD927231F225300CC6932 /* LIveRepository.swift in Sources */,
+				299AD933231F6B2800CC6932 /* CurrencyService.swift in Sources */,
 				299AD8EA231EE76200CC6932 /* ViewController.swift in Sources */,
-				299AD917231EE90A00CC6932 /* CurrencyLayerAPI.swift in Sources */,
+				299AD917231EE90A00CC6932 /* CurrencyListAPI.swift in Sources */,
+				299AD935231F6B4500CC6932 /* MainViewModel.swift in Sources */,
 				299AD8E8231EE76200CC6932 /* AppDelegate.swift in Sources */,
+				299AD925231F21F200CC6932 /* ListRepository.swift in Sources */,
+				299AD929231F22A000CC6932 /* CurrencyLiveAPI.swift in Sources */,
+				299AD92B231F22F500CC6932 /* APIError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
