@@ -53,11 +53,11 @@ class ViewController: UIViewController {
         }.startWith("USD").asDriver(onErrorJustReturn: "USD")
         sourceCurrencyField.text = "USD"
 
-        let vm = MainViewModel.init(input: (amount: amount, currency: currency),
-                                    service: CurrencyService.init(list: ListRepository(api: CurrencyListAPI(),
-                                                                                       cache: LocalCache(UserDefaults.standard)),
-                                                                  live: LiveRepository(api: CurrencyLiveAPI(),
-                                                                                       cache: LocalCache(UserDefaults.standard))))
+        let vm = MainViewModel(input: (amount: amount, currency: currency),
+                               service: CurrencyService(list: ListRepository(api: CurrencyListAPI(),
+                                                                             cache: LocalCache(UserDefaults.standard)),
+                                                        live: LiveRepository(api: CurrencyLiveAPI(),
+                                                                             cache: LocalCache(UserDefaults.standard))))
         
         vm.exchange.bind(to: currencyCollectionView.rx.items(cellIdentifier: "cell", cellType: CurrencyCell.self)) { index, exchange, cell in
             cell.set(exchange: exchange)
@@ -72,6 +72,9 @@ class ViewController: UIViewController {
                 self.sourceCurrencyField.text = str.element?.first
         }.disposed(by: disposeBag)
         
+        vm.error.subscribe(onNext: { err in
+                self.showError(error: err)
+        }).disposed(by: disposeBag)
     }
     
     private func showError(error: APIError) {

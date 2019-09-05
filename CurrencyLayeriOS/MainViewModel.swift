@@ -11,11 +11,12 @@ import RxSwift
 import RxCocoa
 
 class MainViewModel {
-    private let service: CurrencyService
+    private let service: CurrencyServiceProtocol
     let quotes: Observable<[String]>
     let exchange: Observable<[Exchange]>
-    
-    init(input: (amount: Driver<String>, currency: Driver<String>), service: CurrencyService) {
+    let error: Observable<APIError>
+
+    init(input: (amount: Driver<String>, currency: Driver<String>), service: CurrencyServiceProtocol) {
         self.service = service
         quotes = service.quotes()
         
@@ -25,11 +26,21 @@ class MainViewModel {
             .flatMap { $0 }
             .asDriver(onErrorJustReturn: 0.0)
         
-        exchange = Driver
+        let res = Driver
             .combineLatest(input.amount, baseRate) { (amount, base) in
                 service.exchange(input: Double(amount) ?? 0.0, base: base)
             }
             .asObservable()
             .flatMap { $0 }
+            .materialize().share(replay: 1)
+        exchange = res.filter { event in
+            event.element != nil
+        }
+        .map { $0.element! }
+        
+        error = res.filter { event in
+            event.error != nil
+        }
+        .map { $0.error as? APIError ?? APIError.application }
     }
 }

@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-struct Quote: Codable {
+struct Quote: Codable, Equatable {
     var currency: String
     var rate: Double
     
@@ -18,7 +18,7 @@ struct Quote: Codable {
     }
 }
 
-struct Exchange {
+struct Exchange: Equatable {
     let quote: Quote
     private let input: Double
     private let base: Double
@@ -33,8 +33,13 @@ struct Exchange {
         return quote.rate * input / base
     }
 }
+protocol CurrencyServiceProtocol {
+    func quotes() -> Observable<[String]>
+    func exchange(input: Double, base: Double) -> Observable<[Exchange]>
+    func baseRateFromUSD(base: String) -> Observable<Double>
+}
 
-class CurrencyService {
+class CurrencyService: CurrencyServiceProtocol {
     let listRepo: ListRepositoryProtocol
     let liveRepo: LiveRepositoryProtocol
     
@@ -62,5 +67,31 @@ class CurrencyService {
                 q.currency == base
             })?.rate ?? 1.0
         }
+    }
+}
+
+class MockCurrencyService: CurrencyServiceProtocol {
+    private let quotesMock: [String]
+    private let exchangeMock: (Double, Double) -> [Exchange]
+    private let baseRateFromUSDMock: (String) -> Double
+    
+    init(quotesMock: [String], exchangeMock: @escaping (Double, Double) -> [Exchange], baseRateFromUSDMock: @escaping (String) -> Double) {
+        self.quotesMock = quotesMock
+        self.exchangeMock = exchangeMock
+        self.baseRateFromUSDMock = baseRateFromUSDMock
+    }
+    
+    func quotes() -> Observable<[String]> {
+        return Observable.of(quotesMock)
+    }
+    
+    func exchange(input: Double, base: Double) -> Observable<[Exchange]> {
+        let exs = self.exchangeMock(input, base)
+        return Observable.of(exs)
+    }
+    
+    func baseRateFromUSD(base: String) -> Observable<Double> {
+        let d = baseRateFromUSDMock(base)
+        return Observable.of(d)
     }
 }
