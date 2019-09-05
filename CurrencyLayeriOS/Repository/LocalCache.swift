@@ -9,7 +9,7 @@
 import Foundation
 
 struct LocalCache {
-    enum udKey: String {
+    enum UdKey: String {
         case live = "live_list"
         case currencies = "currencies_list"
     }
@@ -21,11 +21,11 @@ struct LocalCache {
     
     func save(live: LiveResponse) {
         let data =  try! JSONEncoder().encode(live)
-        UserDefaults.standard.set(data, forKey: udKey.live.rawValue)
+        UserDefaults.standard.set(data, forKey: UdKey.live.rawValue)
     }
     
     func getLiveResponse() -> LiveResponse? {
-        if let data = UserDefaults.standard.data(forKey: udKey.live.rawValue),
+        if let data = UserDefaults.standard.data(forKey: UdKey.live.rawValue),
             let resp = try? JSONDecoder().decode(LiveResponse.self, from: data) {
             return resp
         }
@@ -34,11 +34,11 @@ struct LocalCache {
     
     func save(currency: ListResponse) {
         let data =  try! JSONEncoder().encode(currency)
-        UserDefaults.standard.set(data, forKey: udKey.currencies.rawValue)
+        UserDefaults.standard.set(data, forKey: UdKey.currencies.rawValue)
     }
     
     func getCurrencyResponse() -> ListResponse? {
-        if let data = UserDefaults.standard.data(forKey: udKey.currencies.rawValue),
+        if let data = UserDefaults.standard.data(forKey: UdKey.currencies.rawValue),
             let resp = try? JSONDecoder().decode(ListResponse.self, from: data) {
             return resp
         }

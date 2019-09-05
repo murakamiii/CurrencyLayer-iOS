@@ -18,6 +18,7 @@ import RxTest
 class MainViewModelTests: XCTestCase {
 
     override func setUp() {
+        super.setUp()
         scheduler = TestScheduler(initialClock: 0)
         amountDriver = scheduler.createColdObservable([
             .next(10, "0"),
@@ -33,6 +34,7 @@ class MainViewModelTests: XCTestCase {
     }
 
     override func tearDown() {
+        super.tearDown()
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
@@ -43,10 +45,11 @@ class MainViewModelTests: XCTestCase {
         exchangeMock: { input, base in
             let rates = ["USD": 1.0, "JPY": 108.5, "EUR": 0.9]
             return Quote.quotes(from: rates).sorted(by: { l, r in l.currency < r.currency }).map { Exchange(quote: $0, input: input, base: base) }
-    }, baseRateFromUSDMock: { str in
-        let rates = ["USD": 1.0, "JPY": 108.5, "EUR": 0.9]
-        return rates[str] ?? 0.0
-    })
+        }, baseRateFromUSDMock: { str in
+            let rates = ["USD": 1.0, "JPY": 108.5, "EUR": 0.9]
+            return rates[str] ?? 0.0
+        }
+    )
     
     var scheduler: TestScheduler!
     var amountDriver: Driver<String>!

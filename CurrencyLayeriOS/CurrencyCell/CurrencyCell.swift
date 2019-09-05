@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 class CurrencyCell: UICollectionViewCell {
-    @IBOutlet weak var quoteLabel: UILabel!
-    @IBOutlet weak var valueLabel: UILabel!
+    @IBOutlet private weak var quoteLabel: UILabel!
+    @IBOutlet private weak var valueLabel: UILabel!
     
     static let cellLength: CGFloat = 80.0
 

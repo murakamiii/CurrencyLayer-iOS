@@ -12,14 +12,16 @@ import XCTest
 class ExchangeTests: XCTestCase {
     let quotes = [
         Quote(currency: "USD", rate: 105.11),
-        Quote(currency: "EUR", rate: 135.0001)
+        Quote(currency: "EUR", rate: 135.000_1)
     ]
     
     override func setUp() {
+        super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
     override func tearDown() {
+        super.tearDown()
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 

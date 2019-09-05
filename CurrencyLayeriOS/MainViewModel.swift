@@ -21,7 +21,7 @@ class MainViewModel {
         quotes = service.quotes()
         
         let baseRate = input.currency
-            .map { service.baseRateFromUSD(base: $0)}
+            .map { service.baseRateFromUSD(base: $0) }
             .asObservable()
             .flatMap { $0 }
             .asDriver(onErrorJustReturn: 0.0)

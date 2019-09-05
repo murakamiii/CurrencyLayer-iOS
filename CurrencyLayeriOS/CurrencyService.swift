@@ -57,7 +57,7 @@ class CurrencyService: CurrencyServiceProtocol {
             $0.map { quote in
                 Exchange(quote: quote, input: input, base: base)
             }
-            .sorted(by: { (lhs, rhs) in lhs.quote.currency < rhs.quote.currency  })
+            .sorted(by: { (lhs, rhs) in lhs.quote.currency < rhs.quote.currency })
         }
     }
     

@@ -27,7 +27,7 @@ class ListRepository: ListRepositoryProtocol {
             return Observable.of(resp.currencies ?? [:])
         }
         
-        return api.listResponse().map { resp -> [String : String] in
+        return api.listResponse().map { resp -> [String: String] in
             if resp.success == true {
                 self.cache.save(currency: resp)
             }

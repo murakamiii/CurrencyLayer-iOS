@@ -11,9 +11,9 @@ import RxSwift
 import RxCocoa
 
 class ViewController: UIViewController {
-    @IBOutlet weak var amountInputField: UITextField!
-    @IBOutlet weak var currencyCollectionView: UICollectionView!
-    @IBOutlet weak var sourceCurrencyField: UITextField!
+    @IBOutlet private weak var amountInputField: UITextField!
+    @IBOutlet private weak var currencyCollectionView: UICollectionView!
+    @IBOutlet private weak var sourceCurrencyField: UITextField!
     
     let currencyPickerView: UIPickerView = UIPickerView()
     
@@ -42,7 +42,8 @@ class ViewController: UIViewController {
         sourceCurrencyField.inputAccessoryView = toolbar
     }
     
-    @objc private func closeKeyBoard() {
+    @objc
+    private func closeKeyBoard() {
         self.view.endEditing(true)
     }
     
@@ -59,22 +60,25 @@ class ViewController: UIViewController {
                                                         live: LiveRepository(api: CurrencyLiveAPI(),
                                                                              cache: LocalCache(UserDefaults.standard))))
         
-        vm.exchange.bind(to: currencyCollectionView.rx.items(cellIdentifier: "cell", cellType: CurrencyCell.self)) { index, exchange, cell in
+        vm.exchange.bind(to: currencyCollectionView.rx.items(cellIdentifier: "cell", cellType: CurrencyCell.self)) { _, exchange, cell in
             cell.set(exchange: exchange)
             cell.isUserInteractionEnabled = false
             print(exchange)
-        }.disposed(by: disposeBag)
+        }
+        .disposed(by: disposeBag)
         
         vm.quotes.bind(to: currencyPickerView.rx.itemTitles) { $1 }.disposed(by: disposeBag)
         currencyPickerView.rx.modelSelected(String.self)
             .subscribe { str in
                 print(str)
                 self.sourceCurrencyField.text = str.element?.first
-        }.disposed(by: disposeBag)
+            }
+            .disposed(by: disposeBag)
         
         vm.error.subscribe(onNext: { err in
-                self.showError(error: err)
-        }).disposed(by: disposeBag)
+            self.showError(error: err)
+        })
+        .disposed(by: disposeBag)
     }
     
     private func showError(error: APIError) {

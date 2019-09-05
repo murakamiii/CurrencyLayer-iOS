@@ -28,7 +28,6 @@ protocol LiveAPIProtocol {
     func liveResponse() -> Observable<LiveResponse>
 }
 
-
 class CurrencyLiveAPI: LiveAPIProtocol {
     func liveResponse() -> Observable<LiveResponse> {
         let session = URLSession.shared
