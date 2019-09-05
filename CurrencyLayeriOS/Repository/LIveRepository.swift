@@ -22,14 +22,16 @@ class LiveRepository: LiveRepositoryProtocol {
     
     func getQuotes() -> Observable<[Quote]> {
         if let data = UserDefaults.standard.data(forKey: "live_list"),
-            let resp = try? JSONDecoder().decode(LiveResponse.self, from: data) {
+            let resp = try? JSONDecoder().decode(LiveResponse.self, from: data),
+            resp.timestamp! + 60 * 30 > Int(Date().timeIntervalSince1970) {
             return Observable.of(Quote.quotes(from: resp.quotes ?? [:]))
         }
         
         return api.liveResponse().map { resp in
             let data =  try! JSONEncoder().encode(resp)
-            UserDefaults.standard.set(data, forKey: "live_list")
-            
+            if resp.success == true {
+                UserDefaults.standard.set(data, forKey: "live_list")
+            }
             return Quote.quotes(from: resp.quotes ?? [:])
         }
     }

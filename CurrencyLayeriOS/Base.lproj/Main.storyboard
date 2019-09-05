@@ -19,16 +19,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Max Length : 8" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Xl-gU-HZk">
-                                <rect key="frame" x="160" y="76" width="222" height="45"/>
+                                <rect key="frame" x="160" y="76" width="222" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="xRz-Bs-CoT"/>
+                                    <constraint firstAttribute="height" constant="30" id="xRz-Bs-CoT"/>
                                 </constraints>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
                             </textField>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fjZ-WR-V3b">
-                                <rect key="frame" x="8" y="129" width="398" height="725"/>
+                                <rect key="frame" x="8" y="152" width="398" height="702"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="guB-ZF-dJ2">
                                     <size key="itemSize" width="50" height="50"/>
@@ -38,14 +38,36 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount :" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="beK-8Y-MRy">
+                                <rect key="frame" x="82.5" y="80.5" width="69.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3ge-Rb-s86">
+                                <rect key="frame" x="322" y="114" width="60" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="dXz-zU-Svs"/>
+                                    <constraint firstAttribute="width" constant="60" id="td2-Nq-As2"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="fjZ-WR-V3b" firstAttribute="top" secondItem="5Xl-gU-HZk" secondAttribute="bottom" constant="8" id="1ag-ww-43R"/>
+                            <constraint firstItem="fjZ-WR-V3b" firstAttribute="top" secondItem="5Xl-gU-HZk" secondAttribute="bottom" constant="46" id="1ag-ww-43R"/>
+                            <constraint firstItem="beK-8Y-MRy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="82.5" id="1fq-0p-hsd"/>
+                            <constraint firstItem="5Xl-gU-HZk" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="beK-8Y-MRy" secondAttribute="trailing" constant="8" symbolic="YES" id="5LI-mP-6W8"/>
+                            <constraint firstItem="3ge-Rb-s86" firstAttribute="top" secondItem="5Xl-gU-HZk" secondAttribute="bottom" constant="8" id="Att-yK-P2Y"/>
+                            <constraint firstItem="beK-8Y-MRy" firstAttribute="centerY" secondItem="5Xl-gU-HZk" secondAttribute="centerY" id="G4s-GY-PNL"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="fjZ-WR-V3b" secondAttribute="bottom" constant="8" id="PKJ-hT-wyt"/>
                             <constraint firstItem="5Xl-gU-HZk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="160" id="i96-aY-aRg"/>
+                            <constraint firstItem="fjZ-WR-V3b" firstAttribute="top" secondItem="3ge-Rb-s86" secondAttribute="bottom" constant="8" id="mKI-Qg-Cxh"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fjZ-WR-V3b" secondAttribute="trailing" constant="8" id="qdn-JS-ppQ"/>
                             <constraint firstItem="fjZ-WR-V3b" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="rVO-c7-2gC"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3ge-Rb-s86" secondAttribute="trailing" constant="32" id="voe-Zg-3ie"/>
                             <constraint firstItem="5Xl-gU-HZk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="32" id="x8C-Ww-zBM"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5Xl-gU-HZk" secondAttribute="trailing" constant="32" id="yBf-Kx-cn2"/>
                         </constraints>
@@ -54,6 +76,7 @@
                     <connections>
                         <outlet property="amountInputField" destination="5Xl-gU-HZk" id="JM0-Pj-tbZ"/>
                         <outlet property="currencyCollectionView" destination="fjZ-WR-V3b" id="GrE-Bc-wj1"/>
+                        <outlet property="sourceCurrencyField" destination="3ge-Rb-s86" id="vq4-tV-6k5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

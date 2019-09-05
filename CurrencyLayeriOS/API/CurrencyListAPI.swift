@@ -16,7 +16,7 @@ struct ListResponse: Codable {
     // success: true
     var terms: URL?
     var privacy: URL?
-    var currencies: [String: String]
+    var currencies: [String: String]?
     // success: false
     var error: CLError?
 }

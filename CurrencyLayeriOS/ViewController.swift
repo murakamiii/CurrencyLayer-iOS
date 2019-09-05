@@ -13,7 +13,10 @@ import RxCocoa
 class ViewController: UIViewController {
     @IBOutlet weak var amountInputField: UITextField!
     @IBOutlet weak var currencyCollectionView: UICollectionView!
-
+    @IBOutlet weak var sourceCurrencyField: UITextField!
+    
+    let currencyPickerView: UIPickerView = UIPickerView()
+    
     var viewModel: MainViewModel?
     let disposeBag: DisposeBag = DisposeBag()
     override func viewDidLoad() {
@@ -27,23 +30,46 @@ class ViewController: UIViewController {
         currencyCollectionView.register(nib, forCellWithReuseIdentifier: "cell")
         currencyCollectionView.delegate = self
         
+        let toolbar = UIToolbar()
+        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneBtn = UIBarButtonItem(title: "done", style: .done, target: self, action: #selector(closeKeyBoard))
+        toolbar.items = [space, doneBtn]
+        toolbar.sizeToFit()
+        amountInputField.inputAccessoryView = toolbar
         amountInputField.delegate = self
+        
+        sourceCurrencyField.inputView = currencyPickerView
+        sourceCurrencyField.inputAccessoryView = toolbar
+    }
+    
+    @objc private func closeKeyBoard() {
+        self.view.endEditing(true)
     }
     
     private func bindUI() {
-        let text = amountInputField.rx.text.orEmpty.asDriver()
-        let vm = MainViewModel.init(input: text,
+        let amount = amountInputField.rx.text.orEmpty.asDriver()
+        let currency = currencyPickerView.rx.modelSelected(String.self).map { arr in
+            arr.first ?? ""
+        }.startWith("USD").asDriver(onErrorJustReturn: "USD")
+        sourceCurrencyField.text = "USD"
+
+        let vm = MainViewModel.init(input: (amount: amount, currency: currency),
                                     service: CurrencyService.init(list: ListRepository(api: MockListAPI()),
                                                                   live: LiveRepository(api: MockLiveAPI())))
         
         vm.exchange.bind(to: currencyCollectionView.rx.items(cellIdentifier: "cell", cellType: CurrencyCell.self)) { index, exchange, cell in
             cell.set(exchange: exchange)
             cell.isUserInteractionEnabled = false
+            print(exchange)
         }.disposed(by: disposeBag)
         
-        vm.quotes.subscribe(onNext: { arrry in
-            print(arrry)
-        }).disposed(by: disposeBag)
+        vm.quotes.bind(to: currencyPickerView.rx.itemTitles) { $1 }.disposed(by: disposeBag)
+        currencyPickerView.rx.modelSelected(String.self)
+            .subscribe { str in
+                print(str)
+                self.sourceCurrencyField.text = str.element?.first
+        }.disposed(by: disposeBag)
+        
     }
 }
 

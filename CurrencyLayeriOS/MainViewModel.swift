@@ -15,13 +15,20 @@ class MainViewModel {
     let quotes: Observable<[String]>
     let exchange: Observable<[Exchange]>
     
-    init(input: Driver<String>, service: CurrencyService) {
+    init(input: (amount: Driver<String>, currency: Driver<String>), service: CurrencyService) {
         self.service = service
         quotes = service.quotes()
         
-        exchange = input
-            .map { Double($0) }
-            .map { service.exchange(input: $0 ?? 0.0) }
+        let baseRate = input.currency
+            .map { service.baseRateFromUSD(base: $0)}
+            .asObservable()
+            .flatMap { $0 }
+            .asDriver(onErrorJustReturn: 0.0)
+        
+        exchange = Driver
+            .combineLatest(input.amount, baseRate) { (amount, base) in
+                service.exchange(input: Double(amount) ?? 0.0, base: base)
+            }
             .asObservable()
             .flatMap { $0 }
     }

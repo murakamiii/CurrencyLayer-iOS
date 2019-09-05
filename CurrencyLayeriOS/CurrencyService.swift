@@ -21,14 +21,16 @@ struct Quote: Codable {
 struct Exchange {
     let quote: Quote
     private let input: Double
+    private let base: Double
     
-    init(quote: Quote, input: Double) {
+    init(quote: Quote, input: Double, base: Double) {
         self.quote = quote
         self.input = input
+        self.base = base
     }
     
     func output() -> Double {
-        return quote.rate * input
+        return quote.rate * input / base
     }
 }
 
@@ -42,15 +44,23 @@ class CurrencyService {
     }
     
     func quotes() -> Observable<[String]> {
-        return listRepo.getList().map { Array($0.keys) }
+        return listRepo.getList().map { Array($0.keys).sorted() }
     }
     
-    func exchange(input: Double) -> Observable<[Exchange]> {
+    func exchange(input: Double, base: Double) -> Observable<[Exchange]> {
         return liveRepo.getQuotes().map {
             $0.map { quote in
-                Exchange(quote: quote, input: input)
-                }
-                .sorted(by: { (lhs, rhs) in lhs.quote.currency < rhs.quote.currency  })
+                Exchange(quote: quote, input: input, base: base)
+            }
+            .sorted(by: { (lhs, rhs) in lhs.quote.currency < rhs.quote.currency  })
+        }
+    }
+    
+    func baseRateFromUSD(base: String) -> Observable<Double> {
+        return liveRepo.getQuotes().map {
+            $0.first(where: { q in
+                q.currency == base
+            })?.rate ?? 1.0
         }
     }
 }

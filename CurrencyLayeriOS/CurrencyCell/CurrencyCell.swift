@@ -17,6 +17,6 @@ class CurrencyCell: UICollectionViewCell {
 
     func set(exchange: Exchange) {
         quoteLabel.text = exchange.quote.currency
-        valueLabel.text = String(round(exchange.output() * 100) / 100)
+        valueLabel.text = String("\(exchange.output())".prefix(10))
     }
 }
