@@ -54,9 +54,9 @@ class ViewController: UIViewController {
         sourceCurrencyField.text = "USD"
 
         let vm = MainViewModel.init(input: (amount: amount, currency: currency),
-                                    service: CurrencyService.init(list: ListRepository(api: MockListAPI(),
+                                    service: CurrencyService.init(list: ListRepository(api: CurrencyListAPI(),
                                                                                        cache: LocalCache(UserDefaults.standard)),
-                                                                  live: LiveRepository(api: MockLiveAPI(),
+                                                                  live: LiveRepository(api: CurrencyLiveAPI(),
                                                                                        cache: LocalCache(UserDefaults.standard))))
         
         vm.exchange.bind(to: currencyCollectionView.rx.items(cellIdentifier: "cell", cellType: CurrencyCell.self)) { index, exchange, cell in
@@ -72,6 +72,12 @@ class ViewController: UIViewController {
                 self.sourceCurrencyField.text = str.element?.first
         }.disposed(by: disposeBag)
         
+    }
+    
+    private func showError(error: APIError) {
+        let alert = UIAlertController(title: "エラー", message: error.message(), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 }
 

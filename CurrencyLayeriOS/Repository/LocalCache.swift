@@ -32,6 +32,19 @@ struct LocalCache {
         return nil
     }
     
+    func save(currency: ListResponse) {
+        let data =  try! JSONEncoder().encode(currency)
+        UserDefaults.standard.set(data, forKey: udKey.currencies.rawValue)
+    }
+    
+    func getCurrencyResponse() -> ListResponse? {
+        if let data = UserDefaults.standard.data(forKey: udKey.currencies.rawValue),
+            let resp = try? JSONDecoder().decode(ListResponse.self, from: data) {
+            return resp
+        }
+        return nil
+    }
+    
     static func standard() -> LocalCache {
         return LocalCache(UserDefaults.standard)
     }

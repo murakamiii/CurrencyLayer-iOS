@@ -23,15 +23,13 @@ class ListRepository: ListRepositoryProtocol {
     }
     
     func getList() -> Observable<[String: String]> {
-        if let data = UserDefaults.standard.data(forKey: "currencies_list"),
-            let resp = try? JSONDecoder().decode(ListResponse.self, from: data) {
+        if let resp = cache.getCurrencyResponse() {
             return Observable.of(resp.currencies ?? [:])
         }
         
         return api.listResponse().map { resp -> [String : String] in
-            let data = try! JSONEncoder().encode(resp)
             if resp.success == true {
-                UserDefaults.standard.set(data, forKey: "currencies_list")
+                self.cache.save(currency: resp)
             }
             return resp.currencies ?? [:]
         }

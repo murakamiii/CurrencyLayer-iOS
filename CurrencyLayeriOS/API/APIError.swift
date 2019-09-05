@@ -13,6 +13,19 @@ enum APIError: Error, Equatable {
     case network
     case application
     case rateLimit
+    
+    func message() -> String {
+        switch self {
+        case .server(let info):
+            return info?.info ?? "サーバー側に問題が発生しているようです。"
+        case .network:
+            return "ネットワーク環境に問題があります。"
+        case .application:
+            return "アプリ側に問題があります。"
+        case .rateLimit:
+            return "アクセス回数の制限に到達しました。"
+        }
+    }
 }
 
 struct CLError: Codable, Equatable {

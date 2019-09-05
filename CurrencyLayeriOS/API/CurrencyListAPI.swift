@@ -28,7 +28,10 @@ protocol ListAPIProtocol {
 class CurrencyListAPI: ListAPIProtocol {
     func listResponse() -> Observable<ListResponse> {
         let session = URLSession.shared
-        let url = URL(string: "http://www.apilayer.net/api/list?access_key=177b2e9c214f6cbba0bf9d5c75361b82")!
+        guard let key = ProcessInfo.processInfo.environment["access_key"] else {
+            return Observable.error(APIError.application)
+        }
+        let url = URL(string: "http://www.apilayer.net/api/list?access_key=\(key)")!
         let req = URLRequest(url: url)
         
         return session.rx.response(request: req).map { resp, data in
