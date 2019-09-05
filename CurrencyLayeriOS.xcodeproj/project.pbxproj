@@ -27,6 +27,7 @@
 		299AD931231F42D300CC6932 /* CurrencyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 299AD930231F42D300CC6932 /* CurrencyCell.xib */; };
 		299AD933231F6B2800CC6932 /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AD932231F6B2800CC6932 /* CurrencyService.swift */; };
 		299AD935231F6B4500CC6932 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AD934231F6B4500CC6932 /* MainViewModel.swift */; };
+		299AD93723212FDC00CC6932 /* LocalCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AD93623212FDC00CC6932 /* LocalCache.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		299AD930231F42D300CC6932 /* CurrencyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrencyCell.xib; sourceTree = "<group>"; };
 		299AD932231F6B2800CC6932 /* CurrencyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyService.swift; sourceTree = "<group>"; };
 		299AD934231F6B4500CC6932 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		299AD93623212FDC00CC6932 /* LocalCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +193,7 @@
 			children = (
 				299AD924231F21F200CC6932 /* ListRepository.swift */,
 				299AD926231F225300CC6932 /* LIveRepository.swift */,
+				299AD93623212FDC00CC6932 /* LocalCache.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				299AD8EA231EE76200CC6932 /* ViewController.swift in Sources */,
 				299AD917231EE90A00CC6932 /* CurrencyListAPI.swift in Sources */,
 				299AD935231F6B4500CC6932 /* MainViewModel.swift in Sources */,
+				299AD93723212FDC00CC6932 /* LocalCache.swift in Sources */,
 				299AD8E8231EE76200CC6932 /* AppDelegate.swift in Sources */,
 				299AD925231F21F200CC6932 /* ListRepository.swift in Sources */,
 				299AD929231F22A000CC6932 /* CurrencyLiveAPI.swift in Sources */,

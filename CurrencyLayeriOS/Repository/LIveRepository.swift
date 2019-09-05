@@ -15,22 +15,21 @@ protocol LiveRepositoryProtocol {
 
 class LiveRepository: LiveRepositoryProtocol {
     private let api: LiveAPIProtocol
-    
-    init(api: LiveAPIProtocol) {
+    private let cache: LocalCache
+    init(api: LiveAPIProtocol, cache: LocalCache) {
         self.api = api
+        self.cache = cache
     }
     
     func getQuotes() -> Observable<[Quote]> {
-        if let data = UserDefaults.standard.data(forKey: "live_list"),
-            let resp = try? JSONDecoder().decode(LiveResponse.self, from: data),
+        if let resp = cache.getLiveResponse(),
             resp.timestamp! + 60 * 30 > Int(Date().timeIntervalSince1970) {
             return Observable.of(Quote.quotes(from: resp.quotes ?? [:]))
         }
         
         return api.liveResponse().map { resp in
-            let data =  try! JSONEncoder().encode(resp)
             if resp.success == true {
-                UserDefaults.standard.set(data, forKey: "live_list")
+                self.cache.save(live: resp)
             }
             return Quote.quotes(from: resp.quotes ?? [:])
         }

@@ -15,9 +15,11 @@ protocol ListRepositoryProtocol {
 
 class ListRepository: ListRepositoryProtocol {
     private let api: ListAPIProtocol
-    
-    init(api: ListAPIProtocol) {
+    private let cache: LocalCache
+
+    init(api: ListAPIProtocol, cache: LocalCache) {
         self.api = api
+        self.cache = cache
     }
     
     func getList() -> Observable<[String: String]> {
@@ -27,7 +29,7 @@ class ListRepository: ListRepositoryProtocol {
         }
         
         return api.listResponse().map { resp -> [String : String] in
-            let data =  try! JSONEncoder().encode(resp)
+            let data = try! JSONEncoder().encode(resp)
             if resp.success == true {
                 UserDefaults.standard.set(data, forKey: "currencies_list")
             }

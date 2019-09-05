@@ -54,8 +54,10 @@ class ViewController: UIViewController {
         sourceCurrencyField.text = "USD"
 
         let vm = MainViewModel.init(input: (amount: amount, currency: currency),
-                                    service: CurrencyService.init(list: ListRepository(api: MockListAPI()),
-                                                                  live: LiveRepository(api: MockLiveAPI())))
+                                    service: CurrencyService.init(list: ListRepository(api: MockListAPI(),
+                                                                                       cache: LocalCache(UserDefaults.standard)),
+                                                                  live: LiveRepository(api: MockLiveAPI(),
+                                                                                       cache: LocalCache(UserDefaults.standard))))
         
         vm.exchange.bind(to: currencyCollectionView.rx.items(cellIdentifier: "cell", cellType: CurrencyCell.self)) { index, exchange, cell in
             cell.set(exchange: exchange)
